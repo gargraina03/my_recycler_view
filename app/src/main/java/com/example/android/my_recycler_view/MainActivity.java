@@ -1,33 +1,38 @@
 package com.example.android.my_recycler_view;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private qna_adapter adapter;
-    private List<qna> albumList;
+    private RecyclerView faqRecyclerView;
+    private FAQAdapter adapter;
+    private ArrayList<FAQ> faqList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        faqRecyclerView = (RecyclerView) findViewById(R.id.faq_recycler_view);
 
-        albumList = new ArrayList<>();
-        adapter = new qna_adapter(this, albumList);
+        faqList.add(new FAQ("What's a Hack?", "Its the deal", R.drawable.ic_card_giftcard_white_48dp, R.drawable.ic_card_membership_white_48dp));
+        faqList.add(new FAQ("What's a Heck?", "Its the deal", R.drawable.ic_card_giftcard_white_48dp, R.drawable.ic_card_membership_white_48dp));
+        faqList.add(new FAQ("What's a Hick?", "Its the deal", R.drawable.ic_card_giftcard_white_48dp, R.drawable.ic_card_membership_white_48dp));
+        faqList.add(new FAQ("What's a Hock?", "Its the deal", R.drawable.ic_card_giftcard_white_48dp, R.drawable.ic_card_membership_white_48dp));
+        faqList.add(new FAQ("What's a Huck?", "Its the deal", R.drawable.ic_card_giftcard_white_48dp, R.drawable.ic_card_membership_white_48dp));
+        faqList.add(new FAQ("What's a Hulk?", "Its the green guy", R.drawable.ic_card_giftcard_white_48dp, R.drawable.ic_card_membership_white_48dp));
 
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setAdapter(adapter);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        faqRecyclerView.setLayoutManager(layoutManager);
+        faqRecyclerView.setHasFixedSize(true);
+
+        adapter = new FAQAdapter(this, faqList);
+        faqRecyclerView.setAdapter(adapter);
 
     }
 }
